@@ -1,0 +1,88 @@
+.bg-nav {
+    background: #2C3E50;
+    background: -webkit-linear-gradient(to right, #4CA1AF, #2C3E50);
+    background: linear-gradient(to right, #4CA1AF, #2C3E50);
+}
+
+.mt-100 {
+    margin-top: 70px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    height: 400px; /* Adjust the height as needed */
+    /* max-height: 400px; You can add max-height if needed */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 15px;
+    font-size: 18px;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.registration-box {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 1px;
+}
+
+.registration-box h2 {
+    font-size: 1rem;
+}
+
+.registration-box button {
+    width: 50%;
+}
+
+.login-box {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.login-box h2 {
+    font-size: 2rem;
+}
+
+.login-box button {
+    width: 50%;
+}
+
+.login-link {
+    color: #000000;
+}
+
+/* Add custom class for specific card margins */
+.custom-card {
+    margin: 10px 0; /* Adjust margins as needed */
+}

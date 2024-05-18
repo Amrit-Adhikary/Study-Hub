@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>STUDY-HUB</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-nav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand fs-3" href="#">STUDY-HUB</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link py-2 px-3 text-light" href="/index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-2 px-3 text-light" href="/recommend">Recommender</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-2 px-3 text-light" href="/search">Search Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-2 px-3 text-light" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-3">
+    <h2 class="display-4 text-white mb-4">Top 50 Popular Books</h2>
+    <div class="row">
+        {% for i in range(book_name|length) %}
+        {% if image[i] and book_name[i] and author[i] and votes[i] and rating[i] %}
+        <div class="col-md-4 mb-4 custom-card">
+            <div class="card h-100 border-0 shadow">
+                <img src="{{ image[i] }}" alt="Cover of {{ book_name[i] }}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h3 class="card-title">{{ book_name[i] }}</h3>
+                    <p class="card-text">{{ author[i] }}</p>
+                    <p class="card-text">Votes: {{ votes[i] }}</p>
+                    <p class="card-text">Rating: {{ "%0.2f"|format(rating[i]) }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-6TuVk5Tpz5z5TLK0jvjAQ3b8fQs7MmGtgwYHfINNvZZI6h0Pk2OrCUfkrWb2lTSc"
+        crossorigin="anonymous"></script>
+
+<footer class="bg-dark text-white text-center py-3">
+    &copy; {{ 2023 }} STUDY-HUB. All rights reserved.
+</footer>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>STUDY-HUB</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-nav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand fs-3" href="#">STUDY-HUB</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link py-2 px-3 text-light" href="/index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-2 px-3 text-light" href="/recommend">Recommender</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-2 px-3 text-light" href="/search">Search Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-2 px-3 text-light" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-5">
+    <h1 class="text-white" style="font-size: 50px; color: rgb(255, 253, 208);">Book Names</h1>
+    <form action="/search" method="post">
+        <input name="user_search" type="text" placeholder="Enter a book title" class="form-control mb-3"><br>
+        <button type="submit" class="btn btn-lg btn-warning">Search</button>
+    </form><br>
+
+    {% if error_message %}
+    <div class="alert alert-danger" role="alert">
+        {{ error_message }}
+    </div>
+    {% endif %}
+
+    {% if name_data %}
+    <h2 class="mb-4 text-white">Search Books for '{{ user_search }}':</h2>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for i in name_data %}
+        <div class="col">
+            <div class="card h-100">
+                <img class="card-img-top" src="{{ i[2] }}" alt="Book Cover">
+                <div class="card-body">
+                    <p class="text-black">{{ i[0] }}</p>
+                    <h4 class="text-black">{{ i[1] }}</h4>
+                    <p class="text-black">Votes - {{ i[3] }}</p>
+                    <p class="text-black">Rating - {{ i[4] }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- Bootstrap JS Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-6TuVk5Tpz5z5TLK0jvjAQ3b8fQs7MmGtgwYHfINNvZZI6h0Pk2OrCUfkrWb2lTSc"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Book - STUDY-HUB</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-nav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand fs-3" href="#">ADMIN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link py-2 px-3 text-light" href="/add_book">Add Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-2 px-3 text-light" href="/admin_search_books">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-2 px-3 text-light" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h2 class="text-dark-bold display-4" style="font-size: 2rem">Add a New Book</h2>
+
+    <form method="POST" enctype="multipart/form-data" id="addBookForm">
+        {{ form.hidden_tag() }}  <!-- Include Flask-WTF CSRF token -->
+
+        <div class="mb-3">
+            {{ form.isbn.label(class="form-label") }}
+            {{ form.isbn(class="form-control", required="required") }}
+        </div>
+        <div class="mb-3">
+            {{ form.image_url.label(class="form-label") }}
+            {{ form.image_url(class="form-control", required="required") }}
+        </div>
+        <div class="mb-3">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-control", required="required") }}
+        </div>
+        <div class="mb-3">
+            {{ form.author.label(class="form-label") }}
+            {{ form.author(class="form-control", required="required") }}
+        </div>
+        <div class="mb-3">
+            {{ form.votes.label(class="form-label") }}
+            {{ form.votes(class="form-control", required="required") }}
+        </div>
+        <div class="mb-3">
+            {{ form.rating.label(class="form-label") }}
+            {{ form.rating(class="form-control", required="required", step="0.01") }}
+        </div>
+        <button type="submit" class="btn btn-primary" name="add_book">Add Book</button>
+    </form>
+
+    {% if 'book_added' in session %}
+    <div class="alert alert-success mt-3">
+        {{ session.pop('book_added') }}
+    </div>
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-6TuVk5Tpz5z5TLK0jvjAQ3b8fQs7MmGtgwYHfINNvZZI6h0Pk2OrCUfkrWb2lTSc"
+        crossorigin="anonymous"></script>
+</body>
+</html>
